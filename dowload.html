@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="C:\Users\Prajkta\Desktop\consent forms\jspdf.js"></script>
+
+<div id="content">
+     <h3>Hello, this is a H3 tag</h3>
+
+    <p>a pararaph</p>
+</div>
+<div id="editor"></div>
+<button id="cmd" onclick="pdf()">Generate PDF</button>
+
+<script>
+    var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+
+    function pdf(){
+        doc.fromHTML(document.getElementById('content').innerHTML, 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf')	;
+    };
+</script>
+</html>
